@@ -46,6 +46,6 @@ export const edgeTestnet = defineChain({
 export const wagmiConfig = getDefaultConfig({
   appName: 'Uniswap Demo - Multi Network',
   projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || 'demo-project-id',
-  chains: [localhost, edgeTestnet],
+  chains: [edgeTestnet, localhost],
   ssr: true,
 });

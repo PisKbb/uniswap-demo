@@ -148,6 +148,16 @@ pnpm start
 3. Set environment variables in Vercel dashboard
 4. Deploy
 
+## Deploy to Vercel
+
+The easiest way to deploy this Next.js app:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/YOUR_USERNAME/edge-chain-uniswap-demo&project-name=uniswap-demo&repository-name=uniswap-demo&root-directory=frontend&env=NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID,NEXT_PUBLIC_CHAIN_ID,NEXT_PUBLIC_WETH_ADDRESS,NEXT_PUBLIC_V2_FACTORY,NEXT_PUBLIC_V2_ROUTER,NEXT_PUBLIC_V3_FACTORY,NEXT_PUBLIC_V3_SWAP_ROUTER,NEXT_PUBLIC_V3_POSITION_MANAGER,NEXT_PUBLIC_TEST_TOKEN_A,NEXT_PUBLIC_TEST_TOKEN_B)
+
+**Important**: Set Root Directory to `frontend` in Vercel settings.
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions and troubleshooting.
+
 ## Network Information
 
 - **Network Name**: Edge Testnet

@@ -22,7 +22,7 @@ export default function Home() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Uniswap Factory Demo Platform
+            Uniswap Factory Create Pair Platform
           </h2>
           <p className="text-lg text-gray-600">
             Create Uniswap V2 trading pairs and V3 liquidity pools on Edge Testnet
