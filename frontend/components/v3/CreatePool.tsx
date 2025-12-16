@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAccount, useWriteContract, useWaitForTransactionReceipt, useReadContract, useChainId } from 'wagmi';
 import { getContracts } from '@/lib/constants';
 import { ABIS } from '@/lib/contracts';
@@ -39,13 +39,15 @@ export default function CreatePool() {
     args: [tokenA as `0x${string}`, tokenB as `0x${string}`, fee],
   });
 
-  const poolExists = existingPool && existingPool !== '0x0000000000000000000000000000000000000000';
-  const wasJustCreated = createdPoolAddress && poolExists && existingPool === createdPoolAddress;
+  const poolExists = !!(existingPool && existingPool !== '0x0000000000000000000000000000000000000000');
+  const wasJustCreated = !!(createdPoolAddress && poolExists && existingPool === createdPoolAddress);
 
   // Update created pool address when transaction succeeds
-  if (isCreateSuccess && poolExists && !createdPoolAddress) {
-    setCreatedPoolAddress(existingPool as string);
-  }
+  useEffect(() => {
+    if (isCreateSuccess && poolExists && !createdPoolAddress) {
+      setCreatedPoolAddress(existingPool as string);
+    }
+  }, [isCreateSuccess, poolExists, createdPoolAddress, existingPool]);
 
   // Calculate sqrtPriceX96 from initial price
   // sqrtPriceX96 = sqrt(price) * 2^96

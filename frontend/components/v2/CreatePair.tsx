@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAccount, useWriteContract, useWaitForTransactionReceipt, useReadContract, useChainId } from 'wagmi';
 import { getContracts } from '@/lib/constants';
 import { ABIS } from '@/lib/contracts';
@@ -24,15 +24,17 @@ export default function CreatePair() {
     abi: ABIS.UNISWAP_V2_FACTORY,
     functionName: 'getPair',
     args: [tokenA as `0x${string}`, tokenB as `0x${string}`],
-  });
+  }) as { data: string | undefined };
 
-  const pairExists = existingPair && existingPair !== '0x0000000000000000000000000000000000000000';
-  const wasJustCreated = createdPairAddress && pairExists && existingPair === createdPairAddress;
+  const pairExists = !!(existingPair && existingPair !== '0x0000000000000000000000000000000000000000');
+  const wasJustCreated = !!(createdPairAddress && pairExists && existingPair === createdPairAddress);
 
   // Update created pair address when transaction succeeds
-  if (isSuccess && pairExists && !createdPairAddress) {
-    setCreatedPairAddress(existingPair as string);
-  }
+  useEffect(() => {
+    if (isSuccess && pairExists && !createdPairAddress) {
+      setCreatedPairAddress(existingPair as string);
+    }
+  }, [isSuccess, pairExists, createdPairAddress, existingPair]);
 
   const handleCreate = () => {
     if (!tokenA || !tokenB) return;
